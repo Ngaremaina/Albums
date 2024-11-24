@@ -5,14 +5,15 @@ import { AuthContext } from "../../helpers/authContext";
 import { LoginUserValidationErrors } from "../../helpers/UserValidation";
 import ProgressSpinner from "../../components/loader/ProgressSpinner";
 import { Link } from "react-router-dom";
+import { LoginRequest } from "../../models/requests/UserRequest";
 
 function LoginUser(){
     const { handleLogin, isLoading } = useContext(AuthContext);
 
-    const [loginForm, setLoginForm] = useState({
+    const [loginForm, setLoginForm] = useState<LoginRequest>({
         emailAddress: "",
         password: ""
-    });
+});
 
     const [errors, setErrors] = useState<LoginUserValidationErrors>({
         emailAddress: '',

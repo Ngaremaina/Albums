@@ -13,13 +13,10 @@ export const registerUser = async (payload: RegisterRequest, navigate: (path: st
         }) 
 
         if (response.status === 201){
-          console.log('Form submitted successfully', response.json());
+          console.log('Form submitted successfully');
           navigate("/login")
 
         }
-
-        
-        
       } catch (error) {
         console.error('Form submission error:', error);
       }
@@ -27,7 +24,7 @@ export const registerUser = async (payload: RegisterRequest, navigate: (path: st
 
 export const loginUser = async (email: string, password: string, navigate: (path: string) => void) => {
     const url = axiosInstance.getUri() + "/api/v1/users/login";
-    console.log(url)
+    // console.log(url)
     try {
         const res = await fetch(url, {
         method: "POST",

@@ -4,11 +4,12 @@ import { RegisterUserErrors } from "../../helpers/UserValidation";
 import FormTemplate from "../../components/forms/FormTemplate";
 import InputField from "../../components/forms/InputTemplate";
 import { registerUser } from "../../services/Users";
+import { RegisterRequest } from "../../models/requests/UserRequest";
 
 function RegisterUser(){
     const navigate = useNavigate();
 
-  const [registerForm, setRegisterForm] = useState({
+  const [registerForm, setRegisterForm] = useState<RegisterRequest>({
     name: '',
     username: '',
     emailAddress: '',
