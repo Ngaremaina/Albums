@@ -10,6 +10,7 @@ import com.albums.backend.models.responses.UserDetailsResponse;
 import com.albums.backend.models.responses.UserResponse;
 import com.albums.backend.repositories.UserRepository;
 import com.albums.backend.security.JwtTokenUtil;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,6 +44,7 @@ public class UsersService implements UserDetailsService {
     @Autowired
     private AlbumService albumService;
 
+    @Transactional
     public UserResponse addUser(RegisterRequest registerRequest){
         Users user = userRepository.findByEmailAddress(registerRequest.getEmailAddress());
 
@@ -62,6 +64,7 @@ public class UsersService implements UserDetailsService {
 
     }
 
+    @Transactional
     public LoginResponse loginUser(LoginRequest loginRequest){
         Users user = userRepository.findByEmailAddress(loginRequest.getEmailAddress());
 

@@ -6,6 +6,7 @@ import com.albums.backend.models.requests.ImageRequest;
 import com.albums.backend.models.responses.ImageResponse;
 import com.albums.backend.repositories.AlbumRepository;
 import com.albums.backend.repositories.ImageRepository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class ImageService {
     @Autowired
     private AlbumRepository albumRepository;
 
+    @Transactional
     public ImageResponse addImage(ImageRequest imageRequest){
         Images image = imageRepository.findByImageTitle(imageRequest.getImageTitle());
         Optional<Albums> album = albumRepository.findById(imageRequest.getAlbumId());
@@ -44,6 +46,7 @@ public class ImageService {
         return imageList.stream().map(this::convertImageResponse).toList();
     }
 
+    @Transactional
     public ImageResponse editImage(Long id, ImageRequest imageRequest) {
         // Find the image by ID
         Optional<Images> optionalImage = imageRepository.findById(id);

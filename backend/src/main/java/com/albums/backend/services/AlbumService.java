@@ -7,6 +7,7 @@ import com.albums.backend.models.responses.AlbumResponse;
 import com.albums.backend.models.responses.ImageResponse;
 import com.albums.backend.repositories.AlbumRepository;
 import com.albums.backend.repositories.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class AlbumService {
     @Autowired
     private ImageService imageService;
 
+    @Transactional
     public AlbumResponse addAlbum(AlbumRequest albumRequest) {
         Albums existingAlbum = albumRepository.findByAlbumTitle(albumRequest.getAlbumTitle());
         Optional<Users> user = userRepository.findById(albumRequest.getUserId());
