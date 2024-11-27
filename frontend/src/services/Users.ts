@@ -24,7 +24,7 @@ export const registerUser = async (payload: RegisterRequest, navigate: (path: st
 
 export const loginUser = async (email: string, password: string, navigate: (path: string) => void) => {
     const url = axiosInstance.getUri() + "/api/v1/users/login";
-    // console.log(url)
+    
     try {
         const res = await fetch(url, {
         method: "POST",
@@ -43,28 +43,47 @@ export const loginUser = async (email: string, password: string, navigate: (path
         throw new Error(errorMessage);
         }
 
-        const userdata: LoginResponse = await res.json(); // Parse the response JSON
-        // console.log("User data:", userdata);  // Add this for debugging
+        const userdata: LoginResponse = await res.json(); 
+        // console.log("User data:", userdata);  
 
-        // Store user info and token in IndexedDB
         await storeData('userInfo', userdata);
         await storeData('userToken', userdata.token);
         navigate('/dashboard');
 
         return userdata
         
-
-    // Navigate to appropriate dashboard
-  //   navigate(userdata.is_manager ? '/manager-dashboard' : '/dashboard');
   } catch (error: unknown) {
     console.error('Login error:', error);
   } 
 };
 
 export const logoutUser = async (navigate: (path:string) => void) => {
-
-    // Remove user info and token from IndexedDB
     await removeData('userInfo');
     await removeData('userToken');
     navigate("/");
   };
+
+
+export const getAllUsers = async (token: string | null) => {
+  const url = axiosInstance.getUri() + "/api/v1/users"
+
+  try{
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      const errorMessage = `Error: ${response.status} - ${response.statusText}`;
+      throw new Error(errorMessage);
+    }
+
+    return await response.json()
+
+  }
+
+  catch (error: unknown) {
+    console.error('Fetching users error:', error);
+  }
+}

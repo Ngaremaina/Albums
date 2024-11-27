@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginResponse } from "../models/responses/UserResponse";
 import { loginUser } from "../services/Users";
-import { AuthProviderProps, AuthContext } from "../helpers/authContext";
+import { AuthProviderProps, AuthContext } from "../hooks/authContext";
 import { getData } from "../hooks/idHelpers";
 import { logoutUser } from "../services/Users";
 

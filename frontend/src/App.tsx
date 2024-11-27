@@ -1,9 +1,8 @@
 import './App.css'
 import { AuthProvider } from './context/Authentication'
-import AppRoutes from './routes/routes'
+import AppRoutes from './routes/Routes'
 
 function App() {
-
 
   return (
     <AuthProvider>

@@ -9,3 +9,4 @@ export interface RegisterUserErrors extends LoginUserValidationErrors{
     emailAddress: string;
     password: string;
 }
+

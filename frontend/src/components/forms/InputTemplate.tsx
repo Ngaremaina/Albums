@@ -23,7 +23,7 @@ function InputField({
 }: InputFieldProps) {
     return (
         <div>
-            <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
+            <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900 float-left">{label}</label>
                 <input
                     type={type}
                     name={name}

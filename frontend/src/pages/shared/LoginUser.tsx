@@ -1,7 +1,7 @@
 import FormTemplate from "../../components/forms/FormTemplate";
 import InputField from "../../components/forms/InputTemplate";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../helpers/authContext";
+import { AuthContext } from "../../hooks/authContext";
 import { LoginUserValidationErrors } from "../../helpers/UserValidation";
 import ProgressSpinner from "../../components/loader/ProgressSpinner";
 import { Link } from "react-router-dom";

@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UsersController {
@@ -35,6 +37,12 @@ public class UsersController {
     public ResponseEntity<UserDetailsResponse> fetchUser(@PathVariable String username){
         UserDetailsResponse userDetailsResponse = usersService.getUser(username);
         return new ResponseEntity<>(userDetailsResponse, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDetailsResponse>> fetchAllUsers(){
+        List<UserDetailsResponse> userResponse = usersService.getAllUsers();
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
 }

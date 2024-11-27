@@ -8,7 +8,6 @@ function ProgressSpinner(){
             width="100"
             color="#4fa94d"
             ariaLabel="three-circles-loading"
-            wrapperStyle={{}}
             wrapperClass="flex justify-center h-screen items-center"
         />
     )

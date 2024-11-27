@@ -1,17 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import LoginUser from "../pages/shared/LoginUser";
 import { useContext } from "react";
-import { AuthContext } from "../helpers/authContext";
+import { AuthContext } from "../hooks/authContext";
 import ProgressSpinner from "../components/loader/ProgressSpinner";
 import Dashboard from "../pages/Dashboard";
 import RegisterUser from "../pages/shared/RegisterUser";
-
+import UserDetails from "../pages/UserDetails";
 
 function AppRoutes(){
     const { isLoading, userToken } = useContext(AuthContext);
-
-    // console.log(userData.role)
-    // console.log(userToken)
 
     if (isLoading) {
         return (
@@ -23,6 +20,7 @@ function AppRoutes(){
         {userToken ? (
           <Routes>
             <Route path="/dashboard" element = {<Dashboard />} />
+            <Route path="/:username" element = {<UserDetails/>} />
           </Routes>
         ) : (
           <Routes>

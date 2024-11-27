@@ -111,6 +111,11 @@ public class UsersService implements UserDetailsService {
         return convertUserDetailsResponse(user);
     }
 
+    public List<UserDetailsResponse> getAllUsers(){
+        List<Users> users = userRepository.findAll();
+        return users.stream().map(this::convertUserDetailsResponse).toList();
+    }
+
     private UserDetailsResponse convertUserDetailsResponse(Users user) {
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
 
