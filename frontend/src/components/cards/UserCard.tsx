@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function UserCard({userResponse, albumResponseList}: UserDetailsResponse){
     const initial: string = userResponse.name[0]
 
-    const albumLength = albumResponseList.length;
+    const albumLength = albumResponseList?.length;
 
     return(
         <Link to={`/${userResponse.username}`} className="w-full max-w-sm pt-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105">

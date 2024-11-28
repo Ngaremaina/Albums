@@ -11,12 +11,6 @@ export interface LoginResponse extends UserResponse{
     token: string
 }
 
-export interface UserDetailsResponse{
-    userResponse:{
-        id?: number,
-        name : string,
-        emailAddress: string,
-        username: string
-    }
-    albumResponseList: []
+export interface UserDetailsResponse extends UserResponse{
+    albumResponseList?: [];
 }

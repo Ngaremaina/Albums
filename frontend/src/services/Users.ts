@@ -87,3 +87,26 @@ export const getAllUsers = async (token: string | null) => {
     console.error('Fetching users error:', error);
   }
 }
+
+export const getUserDetails = async (username: string | undefined, token: string | null) => {
+  const url = axiosInstance.getUri() + `/api/v1/users/${username}`
+
+  try{
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      const errorMessage = `Error: ${response.status} - ${response.statusText}`;
+      throw new Error(errorMessage);
+    }
+    
+    return await response.json()
+}
+
+  catch (error: unknown) {
+    console.error('Fetching user details error:', error);
+  }
+
+}
