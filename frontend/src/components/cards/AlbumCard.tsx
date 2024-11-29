@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AlbumResponse } from "../../models/responses/AlbumResponse";
 
-function AlbumItem({ id, albumTitle }: AlbumResponse) {
+function AlbumCard({ id, albumTitle }: AlbumResponse) {
     
     return (        
 
@@ -25,5 +25,5 @@ function AlbumItem({ id, albumTitle }: AlbumResponse) {
     );
 }
 
-export default AlbumItem;
+export default AlbumCard;
 

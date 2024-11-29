@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import RegisterUser from "../pages/shared/RegisterUser";
 import UserDetails from "../pages/UserDetails";
 import AlbumDetails from "../pages/AlbumDetails";
+import EditImage from "../pages/EditImage";
 
 function AppRoutes(){
     const { isLoading, userToken } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function AppRoutes(){
             <Route path="/dashboard" element = {<Dashboard />} />
             <Route path="/:username" element = {<UserDetails/>} />
             <Route path="/albums/:id" element = {<AlbumDetails/>} />
+            <Route path="/images/:id" element = {<EditImage/>} />
           </Routes>
         ) : (
           <Routes>

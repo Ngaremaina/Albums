@@ -58,22 +58,11 @@ public class ImageService {
 
         Images existingImage = optionalImage.get();
 
-        // Update fields only if provided in the request
-        if (imageRequest.getImageTitle() != null) {
+        // Update the image title only if it's valid
+        if (imageRequest.getImageTitle() != null && !imageRequest.getImageTitle().isBlank()) {
             existingImage.setImageTitle(imageRequest.getImageTitle());
-        }
-
-        if (imageRequest.getImageUrl() != null) {
-            existingImage.setImageUrl(imageRequest.getImageUrl());
-        }
-
-        if (imageRequest.getAlbumId() != null) {
-            // Fetch the album entity from the repository
-            Optional<Albums> optionalAlbum = albumRepository.findById(imageRequest.getAlbumId());
-            if (optionalAlbum.isEmpty()) {
-                throw new RuntimeException("Album with ID " + imageRequest.getAlbumId() + " not found");
-            }
-            existingImage.setAlbums(optionalAlbum.get());
+        } else {
+            throw new IllegalArgumentException("Image title cannot be null or blank");
         }
 
         // Save the updated image entity
@@ -83,6 +72,7 @@ public class ImageService {
         return convertImageResponse(updatedImage);
     }
 
+
     public List<ImageResponse> getImagesByAlbumId(Long albumId) {
         List<Images> images = imageRepository.findByAlbumsId(albumId);
         return images.stream()
@@ -90,14 +80,28 @@ public class ImageService {
                 .toList();
     }
 
+    public ImageResponse getImageById(Long id){
+        Optional<Images> image = imageRepository.findById(id);
+        if (image.isPresent()){
+            Images getImage = image.get();
+            return convertImageResponse(getImage);
+        }
+        else{
+            throw new RuntimeException("Could not find image");
+        }
+
+    }
+
 
 
     private ImageResponse convertImageResponse(Images newImage) {
         ImageResponse imageResponse = new ImageResponse();
 
+
         imageResponse.setId(newImage.getId());
         imageResponse.setImageTitle(newImage.getImageTitle());
         imageResponse.setImageUrl(newImage.getImageUrl());
+        imageResponse.setAlbumId(newImage.getAlbums().getId());
 
 
         return imageResponse;

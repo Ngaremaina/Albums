@@ -2,7 +2,6 @@ package com.albums.backend.controllers;
 
 import com.albums.backend.models.requests.ImageRequest;
 import com.albums.backend.models.responses.ImageResponse;
-import com.albums.backend.repositories.ImageRepository;
 import com.albums.backend.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +19,12 @@ public class ImageController {
     public ResponseEntity<ImageResponse> createImage(@RequestBody ImageRequest imageRequest){
         ImageResponse imageResponse = imageService.addImage(imageRequest);
         return new ResponseEntity<>(imageResponse, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ImageResponse> getImage(@PathVariable Long id){
+        ImageResponse imageResponse = imageService.getImageById(id);
+        return new ResponseEntity<>(imageResponse, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

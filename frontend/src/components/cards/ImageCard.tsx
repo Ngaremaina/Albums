@@ -1,8 +1,10 @@
 import { ImageResponse } from "../../models/responses/ImageResponse";
+import { Link } from "react-router-dom";
 
-function ImageCard({imageTitle, imageUrl}: ImageResponse){
+function ImageCard({imageTitle, imageUrl, id}: ImageResponse){
     return(
-        
+        <Link to = {`/images/${id}`}>
+       
         <figure className="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
             <img className="rounded-lg" src={imageUrl} alt={imageTitle} />
             
@@ -10,6 +12,7 @@ function ImageCard({imageTitle, imageUrl}: ImageResponse){
                 <p>{imageTitle}</p>
             </figcaption>
         </figure>
+        </Link>
     )
     
 }
