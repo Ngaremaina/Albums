@@ -7,8 +7,6 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-COPY .env .env
-
 # Stage 2: Run the .jar
 FROM openjdk:17-jdk-slim
 
