@@ -7,6 +7,9 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
+COPY ./pom.xml /app/pom.xml
+COPY ./src /app/src
+
 # Stage 2: Run the .jar
 FROM openjdk:17-jdk-slim
 
