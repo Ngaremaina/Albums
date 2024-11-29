@@ -18,7 +18,7 @@ public class Images {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "album_id")
     private Albums albums;
 

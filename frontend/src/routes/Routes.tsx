@@ -6,6 +6,7 @@ import ProgressSpinner from "../components/loader/ProgressSpinner";
 import Dashboard from "../pages/Dashboard";
 import RegisterUser from "../pages/shared/RegisterUser";
 import UserDetails from "../pages/UserDetails";
+import AlbumDetails from "../pages/AlbumDetails";
 
 function AppRoutes(){
     const { isLoading, userToken } = useContext(AuthContext);
@@ -21,6 +22,7 @@ function AppRoutes(){
           <Routes>
             <Route path="/dashboard" element = {<Dashboard />} />
             <Route path="/:username" element = {<UserDetails/>} />
+            <Route path="/albums/:id" element = {<AlbumDetails/>} />
           </Routes>
         ) : (
           <Routes>

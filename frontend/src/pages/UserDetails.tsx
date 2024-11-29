@@ -5,7 +5,7 @@ import { getUserDetails } from "../services/Users";
 import { AuthContext } from "../hooks/authContext";
 import { UserDetailsResponse } from "../models/responses/UserResponse";
 import UserProfile from "../components/cards/UserProfileCard";
-import AlbumDetails from "./AlbumDetails";
+import AlbumList from "./AlbumList";
 
 function UserDetails(){
 
@@ -34,7 +34,7 @@ function UserDetails(){
                 </div>
 
                 <dl className="w-full text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-                    <AlbumDetails albumResponseList={user?.albumResponseList} />
+                    <AlbumList albumResponseList={user?.albumResponseList} />
                 </dl>
             </div>
             

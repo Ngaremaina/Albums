@@ -1,6 +1,12 @@
-import { UserResponse } from "./UserResponse";
+// import { UserResponse } from "./UserResponse";
 
-export interface AlbumResponse extends UserResponse{
+import { ImageResponse } from "./ImageResponse"
+
+export interface AlbumResponse{
     id: number,
     albumTitle: string
+}
+
+export interface AlbumDetailsResponse extends AlbumResponse{
+    imageResponseList: ImageResponse[]
 }
