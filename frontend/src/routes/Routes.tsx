@@ -8,6 +8,7 @@ import RegisterUser from "../pages/shared/RegisterUser";
 import UserDetails from "../pages/UserDetails";
 import AlbumDetails from "../pages/AlbumDetails";
 import EditImage from "../pages/EditImage";
+import LandingPage from "../pages/LandingPage";
 
 function AppRoutes(){
     const { isLoading, userToken } = useContext(AuthContext);
@@ -28,8 +29,9 @@ function AppRoutes(){
           </Routes>
         ) : (
           <Routes>
-            <Route path="/*" element={<LoginUser />} />
-            <Route path="/register" element={<RegisterUser />} />
+            <Route path="/*" element={<LandingPage/>} />
+            <Route path="/sign in" element={<LoginUser />} />
+            <Route path="/sign up" element={<RegisterUser />} />
           </Routes>
         )}
       </>
