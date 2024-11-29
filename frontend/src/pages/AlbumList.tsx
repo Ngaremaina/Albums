@@ -10,7 +10,6 @@ function AlbumList({ albumResponseList }: { albumResponseList: AlbumResponse[] |
     return  (
         <div>
             <h5 className="text-xl text-black mb-4 uppercase font-bold">Albums</h5>
-            
             <div className="sm: px-2 md:grid grid-cols-3 gap-4 lg:grid-cols-4">
                 {displayAlbums}
             </div>

@@ -15,7 +15,7 @@ export const getImage = async (id: string | undefined, token: string | null) => 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
+        
         return await response.json();
     }
     catch(error){
@@ -24,7 +24,7 @@ export const getImage = async (id: string | undefined, token: string | null) => 
 
 }
 
-export const updateImage = async (id: string | undefined, token: string | null, image: ImageRequest) => {
+export const updateImage = async (id: string | undefined, token: string | null, image: ImageRequest, navigate: (path: string) => void) => {
 
     const url = axiosInstance.getUri() + `/api/v1/images/${id}`
     // console.log(image)
@@ -42,6 +42,8 @@ export const updateImage = async (id: string | undefined, token: string | null, 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        navigate("/dashboard")
 
         return await response.json();
     }

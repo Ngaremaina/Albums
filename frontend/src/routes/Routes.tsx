@@ -9,6 +9,8 @@ import UserDetails from "../pages/UserDetails";
 import AlbumDetails from "../pages/AlbumDetails";
 import EditImage from "../pages/EditImage";
 import LandingPage from "../pages/LandingPage";
+import AboutUs from "../pages/AboutUs";
+import Profile from "../pages/Profile";
 
 function AppRoutes(){
     const { isLoading, userToken } = useContext(AuthContext);
@@ -26,6 +28,8 @@ function AppRoutes(){
             <Route path="/:username" element = {<UserDetails/>} />
             <Route path="/albums/:id" element = {<AlbumDetails/>} />
             <Route path="/images/:id" element = {<EditImage/>} />
+            <Route path="/about us" element = {<AboutUs/>}/>
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         ) : (
           <Routes>

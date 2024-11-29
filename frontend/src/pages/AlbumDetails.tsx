@@ -4,19 +4,29 @@ import { AuthContext } from "../hooks/authContext";
 import { getAlbumDetails } from "../services/Albums";
 import { AlbumDetailsResponse } from "../models/responses/AlbumResponse";
 import ImageCard from "../components/cards/ImageCard";
+import MoonLoaderSpinner from "../components/loader/MoonLoader";
 
 function AlbumDetails() {
 
     const { id } = useParams()
-    // console.log(id)
     const {userToken} = useContext(AuthContext)
     const [album, setAlbum] = useState<AlbumDetailsResponse>()
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         const fetchAlbumDetails = async () => {
-            const response = await getAlbumDetails(id, userToken)
-            setAlbum(response)
+            setLoading(true); // Start loading
+            try{
+                const response = await getAlbumDetails(id, userToken)
+                setAlbum(response)
+            }
+            catch(error){
+                console.error("Error fetching album details:", error)
+            } finally {
+                setLoading(false); // Stop loading
+            }
+            
         }
 
         fetchAlbumDetails()
@@ -29,15 +39,22 @@ function AlbumDetails() {
     })
 
     return  (
-        <div>
-            <h2>Album Details</h2>
-            <p>{album?.albumTitle}</p>
-            <h2 className="uppercase font-bold mt-3">Images</h2>
-            <hr/>
-            <div className="sm: px-2 md:grid grid-cols-3 gap-x-2 gap-y-2 lg:grid-cols-4">
-                {displayImages}
-            </div>
-        </div>
+        <>
+            {loading ? (
+                <MoonLoaderSpinner />
+            ) : (
+                <div>
+                    <h2>Album Details</h2>
+                    <p>{album?.albumTitle}</p>
+                    <h2 className="uppercase font-bold mt-3">Images</h2>
+                    <hr />
+                    <div className="sm:px-2 md:grid grid-cols-3 gap-x-2 gap-y-2 lg:grid-cols-4">
+                        {displayImages}
+                    </div>
+                </div>
+            )}
+        </>
+        
     )
 }
 

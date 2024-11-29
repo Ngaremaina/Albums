@@ -4,14 +4,25 @@ import { getAllUsers } from "../services/Users";
 import { UserDetailsResponse } from "../models/responses/UserResponse";
 import { AuthContext } from "../hooks/authContext";
 import Layout from "../layout/Layout";
+import MoonLoaderSpinner from "../components/loader/MoonLoader";
 
 function Dashboard(){
     const [users, setUsers] = useState<UserDetailsResponse[]>([])
     const {userToken} = useContext(AuthContext)
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await getAllUsers(userToken)
-            setUsers(response)
+            setLoading(true);
+            try{
+                const response = await getAllUsers(userToken)
+                setUsers(response)
+            }
+            catch (error) {
+                console.error("Error fetching user details:", error);
+            } finally {
+                setLoading(false); // Stop loading
+            }
+            
         }
 
         fetchUsers()
@@ -26,9 +37,14 @@ function Dashboard(){
     })
     return(
         <Layout>
-            <div className="sm: px-2 md:grid grid-cols-3 gap-4 lg:grid-cols-4">
-                {displayUsers}
-            </div>
+            {loading ? (
+                    <MoonLoaderSpinner/>
+            ):(
+                <div className="sm: px-2 md:grid grid-cols-3 gap-4 lg:grid-cols-4">
+                    {displayUsers}
+                </div>
+            )}
+            
         </Layout>
     )
 }

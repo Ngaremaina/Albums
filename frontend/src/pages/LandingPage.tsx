@@ -14,13 +14,8 @@ function LandingPage() {
                 <div className="lg:w-3/4 xl:w-3/4 relative z-5 lg:mt-4">
                 <h1 className="text-white text-5xl md:text-5xl xl:text-8xl font-bold">Momentos</h1>
                 <div>
-                    
-
-                    {/* <p className="text-blue-100 text-xl md:text-normal leading-snug mt-4">Welcome to the Albums Page! This platform offers a centralized space for users to showcase and explore albums.</p> */}
-                    <p className="text-blue-100 text-xl md:text-normal leading-snug mt-4">The Albums Page is a user-friendly platform designed to provide seamless access to a collection of albums. With an intuitive interface, users can create personal accounts, securely log in, and explore albums created by others. This page fosters a community-driven environment where users can share their musical or visual creativity.</p>
-                    
-
-                   
+                    <p className="text-blue-100 text-xl md:text-normal leading-snug mt-4">Momentos is a user-friendly platform designed to provide seamless access to a collection of albums. With an intuitive interface, users can create personal accounts, securely log in, and explore albums created by others. This page fosters a community-driven environment where users can share their musical or visual creativity.</p>
+                                       
                     <Link to="/sign in" className="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold">Sign In</Link>
                     <Link to="/sign up" className="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold m-3">Sign Up</Link>
                     

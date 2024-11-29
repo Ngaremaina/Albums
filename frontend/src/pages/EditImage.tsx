@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 import { updateImage } from "../services/Images";
 import { AuthContext } from "../hooks/authContext";
 import { ImageRequest } from "../models/requests/ImageRequest";
-
+import { useNavigate } from "react-router-dom";
 
 
 function EditImage(){
 
     const {id} = useParams()
     const {userToken} = useContext(AuthContext)
+    const navigate = useNavigate()
        
 
     const [image, setImage] = useState<ImageRequest>({
@@ -26,8 +27,8 @@ function EditImage(){
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // update image
-        console.log(image)
-        updateImage(id, userToken, image)
+        // console.log(image)
+        updateImage(id, userToken, image, navigate)
     }
 
     return(
