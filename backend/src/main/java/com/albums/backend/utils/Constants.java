@@ -1,4 +1,4 @@
-package com.albums.backend.Utils;
+package com.albums.backend.utils;
 
 public class Constants {
     public static final String SIGNING_KEY="SFjI6p6uYL1u3OQZEZ0t7nq5DT0Jil2vn2+2bY30bBc=";

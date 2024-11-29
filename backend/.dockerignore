@@ -1,0 +1,6 @@
+target/*.jar
+!.mvn
+*.iml
+.idea
+*.log
+target/test-classes

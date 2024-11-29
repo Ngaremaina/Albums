@@ -1,14 +1,21 @@
-# Use an official OpenJDK image as a parent image
-FROM openjdk:17-jdk-slim
+# Stage 1: Build the .jar
+FROM maven:latest AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the application JAR file to the container
-COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
 
-# Expose the application port
+RUN mvn clean package -DskipTests
+
+COPY .env .env
+
+# Stage 2: Run the .jar
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar /app/backend.jar
+
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "/app/backend.jar"]

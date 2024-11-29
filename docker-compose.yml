@@ -1,29 +1,19 @@
 services:
-  mysql-momentos:
-    image: mysql:8.0
-    container_name: mysql-momentos
-    environment:
-      MYSQL_ROOT_PASSWORD: root  # Root user password
-      MYSQL_DATABASE: momentos   # Database to create
-      MYSQL_USER: root  # Custom non-root user
-      MYSQL_PASSWORD: root  # Password for the custom user
+  frontend:
+    build:
+      context: ./frontend
     ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
+      - "5173:5173"
 
-  app:
+  backend:
     build:
       context: ./backend
-    depends_on:
-      - mysql-momentos
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-momentos:3306/momentos
-      SPRING_DATASOURCE_USERNAME: momentos_user
-      SPRING_DATASOURCE_PASSWORD: secure_password
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
       - "8080:8080"
+    volumes:
+      - ./backend/.env:/app/.env 
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-ct4oh8dumphs73e742jg-a.oregon-postgres.render.com:5432/momentos
+      - SPRING_DATASOURCE_USERNAME=momentos_user
+      - SPRING_DATASOURCE_PASSWORD=9bJOxiJ38kgTD9bKyN7oJ40JfzwXXABu
 
-volumes:
-  db_data:

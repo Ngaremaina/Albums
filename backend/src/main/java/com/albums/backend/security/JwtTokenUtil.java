@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.albums.backend.Utils.Constants.JWT_TOKEN_VALIDITY_SECONDS;
-import static com.albums.backend.Utils.Constants.SIGNING_KEY;
+import static com.albums.backend.utils.Constants.JWT_TOKEN_VALIDITY_SECONDS;
+import static com.albums.backend.utils.Constants.SIGNING_KEY;
 
 @Component
 public class JwtTokenUtil {
