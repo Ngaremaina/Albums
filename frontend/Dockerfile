@@ -1,29 +1,20 @@
-# Stage 1: Build the application
-FROM node:latest as builder
+# Use the Node.js base image
+FROM node:latest AS build
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
 
+# Install dependencies
 RUN npm install
 
-# Copy all files and build the Vite app
+# Copy the rest of the application
 COPY . .
-RUN npm run build
 
-# Stage 2: Serve the application using a lightweight server
-FROM nginx:alpine
+# Expose the application port
+EXPOSE 5173
 
-# Copy the built files from the builder stage to the Nginx web directory
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy a custom Nginx configuration file 
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80
-EXPOSE 80
-
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Start the development server and bind to 0.0.0.0
+CMD ["npm", "run", "dev", "--", "--host"]

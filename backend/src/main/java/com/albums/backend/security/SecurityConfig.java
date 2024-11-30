@@ -70,7 +70,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173/","https://albums-ickh.onrender.com", "https://momento-site.netlify.app/"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173/","https://albums-ickh.onrender.com", "https://albums-rosy.vercel.app/"));
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowCredentials(true);

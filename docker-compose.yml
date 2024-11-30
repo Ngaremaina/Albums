@@ -3,7 +3,9 @@ services:
     build:
       context: ./frontend
     ports:
-      - "5173:80"
+      - "5173:5173"
+    environment:
+      - VITE_BASE_URL=https://albums-ickh.onrender.com # use http://localhost:8080 for local use
 
   backend:
     build:
