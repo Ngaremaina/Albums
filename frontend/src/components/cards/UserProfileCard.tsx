@@ -1,7 +1,7 @@
 import { UserResponse } from "../../models/responses/UserResponse";
 
 function UserProfile({ userResponse }: { userResponse?: UserResponse['userResponse'] }){
-    console.log(userResponse)
+    // console.log(userResponse)
     return(
         <div className="bg-white overflow-hidden shadow rounded-lg border w-3/4">
             <div className="px-4 py-5 sm:px-6">

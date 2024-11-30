@@ -5,6 +5,7 @@ import { getAlbumDetails } from "../services/Albums";
 import { AlbumDetailsResponse } from "../models/responses/AlbumResponse";
 import ImageCard from "../components/cards/ImageCard";
 import MoonLoaderSpinner from "../components/loader/MoonLoader";
+import Layout from "../layout/Layout";
 
 function AlbumDetails() {
 
@@ -25,35 +26,38 @@ function AlbumDetails() {
                 console.error("Error fetching album details:", error)
             } finally {
                 setLoading(false); // Stop loading
-            }
-            
+            } 
         }
-
         fetchAlbumDetails()
     },[userToken, id])
     
-    // console.log(album)
+    console.log(album)
 
     const displayImages = album?.imageResponseList.map(image => {
         return <ImageCard key = {image.id} id = {image.id} imageTitle={image.imageTitle} imageUrl={image.imageUrl}/>
     })
 
     return  (
-        <>
+        <Layout>
             {loading ? (
                 <MoonLoaderSpinner />
             ) : (
-                <div>
-                    <h2>Album Details</h2>
-                    <p>{album?.albumTitle}</p>
-                    <h2 className="uppercase font-bold mt-3">Images</h2>
-                    <hr />
-                    <div className="sm:px-2 md:grid grid-cols-3 gap-x-2 gap-y-2 lg:grid-cols-4">
-                        {displayImages}
+                <div className="px-10">
+                    <h1 className="text-xl uppercase font-bold text-gray-900">Album details</h1>
+                    <hr/>
+                    <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+                        <h1 className="text-sm font-bold text-gray-900">{album?.albumTitle}</h1>
                     </div>
+                    <h1 className="text-xl uppercase font-bold text-gray-900">Album Images</h1>
+                    <hr/>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {displayImages}
+                    
+                    </div>
+
                 </div>
             )}
-        </>
+        </Layout>
         
     )
 }
