@@ -57,10 +57,9 @@ export const loginUser = async (email: string, password: string, navigate: (path
   } 
 };
 
-export const logoutUser = async (navigate: (path:string) => void) => {
+export const logoutUser = async () => {
     await removeData('userInfo');
     await removeData('userToken');
-    navigate("/");
   };
 
 

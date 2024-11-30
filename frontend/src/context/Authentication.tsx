@@ -17,15 +17,12 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
           const userdata = await loginUser(emailAddress, password, navigate);
 
-          setUserData(userdata ?? null);
-
-        //   setUserToken(userdata?.token ?? null);
-
-          if (userData !== null) {
-            setUserToken(userData.token);
-          } else {
+          if (userdata) {
+            setUserData(userdata);
+            setUserToken(userdata.token);
+        } else {
             setUserToken(null);
-          }
+        }
           
 
   
@@ -37,48 +34,37 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
   
   
-    const handleLogout = () => {
-      try {
+  const handleLogout = () => {
+    try {
         setUserToken(null);
         setUserData(null);
-        logoutUser(navigate);
+        logoutUser();
+        navigate('/');
         setIsLoading(false);
-      } catch (error) {
+    } catch (error) {
         console.error('Logout error:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    }
+};
     
     const isLoggedIn = async () => {
       try {
-        setIsLoading(true);
-        const usertoken = await getData('userToken');
-        const userinfo = await getData('userInfo');
-    
-        // console.log('Retrieved token:', usertoken);
-        // console.log('Retrieved user info:', userinfo);
-    
-        if (userinfo) {
-          setUserToken(usertoken as string);
-          setUserData(userinfo as LoginResponse);
-        }
+          setIsLoading(true);
+          const usertoken = await getData('userToken');
+          const userinfo = await getData('userInfo');
   
-        navigateApp(userinfo as LoginResponse)
+          if (userinfo) {
+              setUserToken(usertoken as string);
+              setUserData(userinfo as LoginResponse);
   
-        
-        setIsLoading(false);
+              if (window.location.pathname !== "/dashboard") {
+                  navigate("/dashboard");
+              }
+          }
+          setIsLoading(false);
       } catch (error) {
-        console.error('isLoggedIn error:', error);
+          console.error('isLoggedIn error:', error);
       }
-    };
-  
-    const navigateApp = (userData:LoginResponse) => {
-      if (userData){
-        navigate("/dashboard")
-      }
-    }
-    
+  };
   
     useEffect(() => {
       isLoggedIn();
