@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL || 'https://albums-ickh.onrender.com';
 
 const axiosInstance = axios.create({
   baseURL,  
