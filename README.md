@@ -92,12 +92,12 @@ Alternatively:
 ## 📂 Project Structure
 
 ### Backend
-- `/src/main/java/com/momentos`: Contains controllers, services, and repository layers.
+- `/src/main/java/com/albums`: Contains controllers, services, and repository layers.
 - `/src/main/resources`: Includes configuration files like `application.yml`.
 
 ### Frontend
 - `/src/components`: React components for UI elements.
-- `/src/pages`: Pages like Login, Register, Albums, and Photos.
+- `/src/pages`: Pages like Login, Register, Albums, and Dashboard.
 - `/src/services`: API calls and client-side business logic.
 
 ## 📋 API Endpoints
