@@ -9,7 +9,7 @@ export default function Logo(){
               alt="Albums Logo"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap opacity-100">
-              Albums
+              Momentos
             </span>
 
           </Link>
